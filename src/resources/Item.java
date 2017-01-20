@@ -7,6 +7,7 @@ package resources;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -20,6 +21,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -36,6 +39,10 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Item.findByTitle", query = "SELECT i FROM Item i WHERE i.title = :title"),
     @NamedQuery(name = "Item.findByPrice", query = "SELECT i FROM Item i WHERE i.price = :price")})
 public class Item implements Serializable {
+    @Basic(optional = false)
+    @Column(name = "expiring_date")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date expiringDate;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -131,6 +138,14 @@ public class Item implements Serializable {
     @Override
     public String toString() {
         return "resources.Item[ id=" + id + " ]";
+    }
+
+    public Date getExpiringDate() {
+        return expiringDate;
+    }
+
+    public void setExpiringDate(Date expiringDate) {
+        this.expiringDate = expiringDate;
     }
     
 }

@@ -34,6 +34,12 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Transaction.findById", query = "SELECT t FROM Transaction t WHERE t.id = :id"),
     @NamedQuery(name = "Transaction.findByTimestamp", query = "SELECT t FROM Transaction t WHERE t.timestamp = :timestamp")})
 public class Transaction implements Serializable {
+    @Basic(optional = false)
+    @Column(name = "amount")
+    private float amount;
+    @Basic(optional = false)
+    @Column(name = "successful")
+    private boolean successful;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -112,6 +118,22 @@ public class Transaction implements Serializable {
     @Override
     public String toString() {
         return "resources.Transaction[ id=" + id + " ]";
+    }
+
+    public float getAmount() {
+        return amount;
+    }
+
+    public void setAmount(float amount) {
+        this.amount = amount;
+    }
+
+    public boolean getSuccessful() {
+        return successful;
+    }
+
+    public void setSuccessful(boolean successful) {
+        this.successful = successful;
     }
     
 }

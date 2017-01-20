@@ -35,6 +35,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "User.findByName", query = "SELECT u FROM User u WHERE u.name = :name"),
     @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password")})
 public class User implements Serializable {
+    @Basic(optional = false)
+    @Column(name = "banned")
+    private short banned;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -131,6 +134,14 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return "resources.User[ id=" + id + " ]";
+    }
+
+    public short getBanned() {
+        return banned;
+    }
+
+    public void setBanned(short banned) {
+        this.banned = banned;
     }
     
 }
