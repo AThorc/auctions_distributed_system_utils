@@ -19,16 +19,25 @@ import java.util.logging.Logger;
 /**
  *
  * @author Nick F
+ * 
+ *  TRAMITE CONNETTORE JDBC SI INTERFACCIA AD UN DATABASE LOCALE MYSQL FORMATTATO NEL SEGUENTE MODO:
+ *    ------------------------------------------------------------------------------------
+ *      node_id   |  ip_address   |   port     |   node_name    |   isReplica    |   isMe
+ *    ------------------------------------------------------------------------------------
+ * 
+ *  isReplica: booleano posto a true se il nodo è istanza di ReplicaManager
+ *  isMe: booleano posto a true se la entry corrisponde al nodo che effettua la lettura
+ *  node_id: id univoco del nodo nella rete per l'identificazione della sorgente nei messaggi di total ordering
  */
 public class NetworkConfigurator {
-    private static NetworkConfigurator istance;
-    private List<NetworkNode> nodes;
+    private static NetworkConfigurator istance; //classe singleton per la configurazione di rete del sistema distribuito
+    private List<NetworkNode> nodes; //tutti i nodi registrati al sistema
     private List<NetworkNode> replicas; //nodi di tipo ReplicaManager
     private List<NetworkNode> frontends; //nodi di tipo FrontEnd
     private NetworkNode myself; //il nodo che coincide con la macchina su cui sta eseguendo questo codice
   
     
-    private NetworkConfigurator( boolean amReplica){
+    private NetworkConfigurator(boolean amReplica){
         
         NetworkNode n;
         int port, id;
@@ -38,9 +47,7 @@ public class NetworkConfigurator {
         this.nodes = new LinkedList<NetworkNode>();
         this.replicas = new LinkedList<NetworkNode>();
         this.frontends = new LinkedList<NetworkNode>();
-        
-        
-        
+
         /*FETCH NETWORK CONFIGURATION FROM DATABASE..*/
         try {
             Class.forName("com.mysql.jdbc.Driver");

@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.io.Serializable;
 
-
 public class TotalOrderMulticastMessage implements IMessage, Serializable, Comparable<TotalOrderMulticastMessage> {
 
     private static final long serialVersionUID = 34278371231L;
@@ -82,36 +81,35 @@ public class TotalOrderMulticastMessage implements IMessage, Serializable, Compa
     }
 
     public String toString() {
-      /*  return String.format('{'+'"mid"'+ ":%d," + '"tos"' + ":%d," +  '"message type"' + ":%s," + '"group"' + ":%d," + '"source"' + 
-        ":%d," + '"sequence"' + ":%d," + '"content"' + ":%s"+'}',
-                messageId,
-                totalOrderSequence,
-                messageType,
-                groupId,
-                source,
-                sequence,
-                content);
-        */        
-                
-                
-                Gson g = new GsonBuilder().create();
-                return g.toJson(this, this.getClass());
+        /*  return String.format('{'+'"mid"'+ ":%d," + '"tos"' + ":%d," +  '"message type"' + ":%s," + '"group"' + ":%d," + '"source"' + 
+         ":%d," + '"sequence"' + ":%d," + '"content"' + ":%s"+'}',
+         messageId,
+         totalOrderSequence,
+         messageType,
+         groupId,
+         source,
+         sequence,
+         content);
+         */
+
+        Gson g = new GsonBuilder().create();
+        return g.toJson(this, this.getClass());
         /*JSONObject stringa = new JSONObject();
-        stringa.put("mid", messageId) ;
-        stringa.put("tos", totalOrderSequence) ;
-        stringa.put("message type", messageType) ;  
-        stringa.put("group", groupId) ;
-        stringa.put("source", source) ;
-        stringa.put("sequence", sequence) ;  
-        stringa.put("content", content) ; 
-        return stringa.toString();*/
-/*
-        JsonObjectBuilder job = (JsonObjectBuilder) Json.createObjectBuilder();
-        JsonObject jo;
-        job2.addNull("id");
-        job2.add("exist", false);
-        jo2 = job2.build();
-*/
+         stringa.put("mid", messageId) ;
+         stringa.put("tos", totalOrderSequence) ;
+         stringa.put("message type", messageType) ;  
+         stringa.put("group", groupId) ;
+         stringa.put("source", source) ;
+         stringa.put("sequence", sequence) ;  
+         stringa.put("content", content) ; 
+         return stringa.toString();*/
+        /*
+         JsonObjectBuilder job = (JsonObjectBuilder) Json.createObjectBuilder();
+         JsonObject jo;
+         job2.addNull("id");
+         job2.add("exist", false);
+         jo2 = job2.build();
+         */
 
     }
 

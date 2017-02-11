@@ -10,9 +10,9 @@ package totalOrderReply;
  * @author alessandrotorcetta
  */
 public class replyMsg {
-    private String content;
-    private int port;
-    private String ip;
+    private String content; //contenuto di un messaggio di PROPOSED_TS per algoritmo ISIS
+    private int port; //porta del destinatario di questo messaggio
+    private String ip; //ip del destinatario di questo messaggio
 
     public replyMsg(String content, int port, String ip) {
         this.content = content;

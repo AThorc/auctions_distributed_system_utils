@@ -9,6 +9,8 @@ package netConf;
 /**
  *
  * @author Nick F
+ * 
+ *  RAPPRESENTA UN NODO DELLA RETE DEL SISTEMA DISTRIBUITO. FARE RIFERIMENTO ALLA CLASSE NetworkConfigurator.
  */
 public class NetworkNode {
     private int id;
